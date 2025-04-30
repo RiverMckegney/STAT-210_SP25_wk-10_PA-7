@@ -78,6 +78,7 @@ Correct the errors and then assign the resulting data to `state_totals`.
 #| eval: true
 
 # Original Code Script:
+
 # cases |> 
 #   groupby(state) |> 
 #   sum(total = sum(case_daily)) |> 
@@ -85,12 +86,21 @@ Correct the errors and then assign the resulting data to `state_totals`.
 
 
 # River's modified code:
+
 cases |> 
   group_by(state) |> 
   summarise(total = sum(cases_daily)) |> # Create new col of total cases per state
   ungroup() |> # Do to continue conducting other mods not related to set grouping
   arrange(desc(total)) |> # Arrange values in greatest to least order
   head(total, n = 10) # Slice and keep just the top 10 rows 
+
+# River's finished df:
+
+state_totals <- cases |> 
+  group_by(state) |> 
+  summarise(total = sum(cases_daily)) |> # Create new col of total cases per state
+  ungroup() |> # Do to continue conducting other mods not related to set grouping
+  arrange(desc(total)) # Arrange values in greatest to least order
 
 ```
 
@@ -101,14 +111,19 @@ Now use the `states_totals` and identify the top ten states/territories with the
 #| label: top-10-states-cases
 #| echo: true
 #| output: true
-#| eval: false
+#| eval: true
 
-state_totals |> 
-  ## order the data by total cases
-  ## extract just the top ten (Hint - look at the `slice() functions)
-  ## create a bar chart with x as the totals and y as the state names
-  ## order the states by greatest to smallest total on the graph
-  ## label, color, update as necessary to provide all relevant information
+# Provided code content
+
+# state_totals |> 
+#   ## order the data by total cases
+#   ## extract just the top ten (Hint - look at the `slice() functions)
+#   ## create a bar chart with x as the totals and y as the state names
+#   ## order the states by greatest to smallest total on the graph
+#   ## label, color, update as necessary to provide all relevant information
+  
+# River's Code
+# state_totals |> 
 ```
 
 ### Canvas Quiz Question 1
