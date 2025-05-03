@@ -122,9 +122,34 @@ Now use the `states_totals` and identify the top ten states/territories with the
 #   ## order the states by greatest to smallest total on the graph
 #   ## label, color, update as necessary to provide all relevant information
   
-# River's Code
-# state_totals |> 
+# River's top-10-states-cases barplot
+state_totals |> 
+  arrange(desc(total)) %>% # Order data high to low
+  slice_head(n = 10) %>% # Select top 10 states
+  # Create plot, set axes, and arrange in order from high (bottom) to low (top)
+  ggplot(aes(fill = state, x = total, y = fct_reorder(state, total, .fun = desc))) +                                                                   # <2>
+  geom_col() + # Make column bar plot
+  labs(title = "COVID-19 Top Ten Infection Cases For U.S. States",
+      x = "Total Daily Cases", y = "State") + # Add labels
+  # Make initial bars flush to x-axis baseline
+  scale_y_discrete(expand = expansion(mult = c(0, 0))) +                    # <1>
+  # Make inital bars flush to y-axis starting line
+  scale_x_continuous(expand = expansion(mult = c(0, 0.3))) +                # <1>
+  theme_classic()
+#  xlim(c(0, 12500000)) # Set minor ticks to more appropriate range 
+
+# River's simpler top-10-state-cases barplot
+state_totals |> 
+  arrange(desc(total)) %>% # Order data high to low
+  slice_head(n = 10) %>% # Select top 10 states
+  # Create plot, set axes, and arrange in order from high (bottom) to low (top)
+  ggplot(aes(fill = state, x = total, y = fct_reorder(state, total, .fun = desc))) +      # <2>
+  geom_col() + # Make column bar plot
+  labs(title = "COVID-19 Top Ten Infection Cases For U.S. States",
+      x = "Total Daily Cases", y = "State")
 ```
+1. Source referenced to reduce space between axis & bars: <https://ggplot2.tidyverse.org/articles/faq-bars.html>
+2. Source used to figure out how to reorder bars with fct_reorder, but sorting so high values appear on bottom of graph, done with .fun = desc: <https://stackoverflow.com/questions/68011782/fct-reorder-ggplot2-not-ordering-as-desired>.
 
 ### Canvas Quiz Question 1
 
@@ -208,4 +233,6 @@ state_totals |>
 
 
 
-
+Coding References:
+1. Ggplot2: Tidyverse. Developed by Hadley Wickham, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, Dewey Dunnington, Teun van den Brand, and Posit. "FAQ: Barplots". Website url: <https://ggplot2.tidyverse.org/articles/faq-bars.html>. Code source url: <https://github.com/tidyverse/ggplot2/blob/v3.5.2/vignettes/articles/faq-bars.Rmd>.
+2. Stackoverflow. "fct_reorder/ggplot2 not ordering as desired". Last modified 2021-06-17. <https://stackoverflow.com/questions/68011782/fct-reorder-ggplot2-not-ordering-as-desired>.
