@@ -155,13 +155,13 @@ state_totals |>
 
 **Which state had the most COVID-19 cases between January 2020 and March 2023?**
 
->Insert Answer Here
+> California appears to display the greatest counts for cases recorded/observed within the dataset compared to the other top ten U.S. states. 
 
 
 ### Other Question
 **Is this the best way to look at our data? Is looking at just the total number of cases the best way to compare states?**
 
->Insert Answer Here
+> No, comparing state's COVID-19 cases by counts alone is not an accurate comparison, because states have varying population sizes, so infectious rates would be best represented as a proportion of total counts per state divided by total population size within each state.
 
 
 
