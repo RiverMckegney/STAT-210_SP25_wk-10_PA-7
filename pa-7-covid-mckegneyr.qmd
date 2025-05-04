@@ -197,7 +197,9 @@ Choose one of the above statistics to calculate to make our comparison between s
 #| output: true
 #| eval: false
 
-state_totals |> 
+# Provided code content
+
+#state_totals |> 
   ## add in column with state population sizes  
   ## calculate your chosen relative rate (e.g. proportion, percentage, rate)
   ## order the data by your relative rate
@@ -205,6 +207,29 @@ state_totals |>
   ## create a bar chart with x as the relative rate and y as the state names
   ## order the states by greatest to smallest relative rate on the graph
   ## label, color, update as necessary to provide all relevant information
+```
+
+```{r}
+#| label: U.S-COVID-19-infection-rate-per-state
+#| echo: true
+#| output: true
+#| eval: true
+
+us_pop |> 
+  mutate(state = NAME) |> # Rename or add col "state" to us_pop dataset for                                  joinable column by
+  right_join(y = state_totals, by = "state") |> # Join datasets
+  na.omit() |>
+  group_by(state) |> # Group upcoming calc. by state column
+  mutate(state_cases_prop = total/estimate) |> # Calc proportion or infectious                                                    rate of state by population
+  ungroup() |> # Exit grouping operation
+  arrange(state_cases_prop) |> # reorder low to high
+  slice_tail(n = 10) |> # Extract top 10
+  ggplot(aes(x = state_cases_prop, state, y = fct_reorder(state, state_cases_prop, .fun = desc), fill = state)) + # Create graph, set axes, order structure, and color code by state
+  geom_col() + # Make bar chart 
+  labs(title = "COVID-19 Infectious Rates In U.S States", x = "Infectious Rate (State COVID-19 cases Per Population Size)", y = "State")
+  
+
+
 ```
 
 
