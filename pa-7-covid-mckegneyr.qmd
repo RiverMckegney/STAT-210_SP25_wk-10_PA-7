@@ -239,7 +239,7 @@ us_pop |>
 
 **Which state had highest number of COVID-19 cases relative to population size between January 2020 and March 2023?**
 
->Insert Answer Here
+> Based on the bar graph, relative to population size, Rhode Islands displays the highest COVID-19 infection rate. 
 
 
 ### Other Questions
@@ -249,12 +249,12 @@ us_pop |>
 - Time scale and impact of time    
 - 
 
->Insert Answer Here
+> Unreported cases (missing observation counts) may vary by state. Other data like population size might not be entirly accurate as well. Time is not being considered in our graphics and analysis, so timeseries graphics of infection rates could further expand our understanding of the process for COVID-19 spread in the U.S.
 
 
 **What other questions would you like to try to answer using this data? Would that require other data sources? What information would you need to answer your questions?**
 
->Insert Answer Here  
+> How is the rate of infection of COVID-19 influeced by state population proportion? Do delayed effects (slower spreading) result in overall fewer or less severe COVID-19 cases? More data required to conduct this analysis would include data on patient COVID-19 severity (not just reported 'deaths' in the New York Times U.S COVID-19 dataset). Other variables or aspects like state size and relative population density (kernal density cluster...) could be investigated as well with this added data.
 
 
 
